@@ -41,6 +41,7 @@ spec:
         - name: init-is-db
           image: busybox:1.31
           command: ['sh', '-c', 'echo -e "Checking for the availability of MySQL Server deployment"; while ! nc -z wso2is-mysql-db-service 3306; do sleep 1; printf "-"; done; echo -e "  >> MySQL Server has started";']
+        {{ end }}
         - name: init-mysql-connector-download
           image: busybox:1.32
           command:
@@ -53,7 +54,6 @@ spec:
           volumeMounts:
             - name: mysql-connector-jar
               mountPath: /mysql-connector-jar
-        {{ end }}
         {{ if .Values.wso2.centralizedLogging.enabled }}
         - name: init-elasticsearch
           image: busybox:1.31
