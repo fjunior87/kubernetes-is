@@ -74,7 +74,6 @@ spec:
         {{ end }}
       containers:
         - name: identity-server
-{{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.wso2is) | indent 10 }}
           image: {{ .Values.wso2.deployment.wso2is.image }}
           imagePullPolicy: {{ .Values.wso2.deployment.wso2is.imagePullPolicy }}
           env:
