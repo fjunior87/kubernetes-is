@@ -32,6 +32,9 @@ spec:
         {{ if .Values.wso2.centralizedLogging.enabled }}
         checksum.is.log.conf: {{ include (print $.Template.BasePath "/logstash/wso2is-pattern-1-c4-logstash-conf.yaml") . | sha256sum }}
         {{ end }}
+        prometheus.io.wso2/scrape: "true"
+        prometheus.io.wso2/port: "2222"
+        prometheus.io.wso2/path: /metrics
       labels:
         deployment: wso2is
         monitoring: {{ .Values.wso2.monitoring.prometheus.jmxJobName }}
